@@ -9,92 +9,122 @@
     </head>
 
     <body>  
+        <style> 
+            .dropdown-menu{min-width: 100%;}
+            select{min-width: 100%;}
+            option:hover{background-color: blue;}
+        </style>
             <!-- <p style="color: white">{{ request.path }}</p>
             <p style="color: white">URL of this page: {{ request.get_full_path }}</p> -->
     <div class= "col-md-12" style="margin-top:auto;">
-            <nav class=" navbar-expand-md navbar-dark bg-dark" style="margin-top:auto;">
-                <div class = "row" style="padding-top:1%;">
-                    <div class = "col-md-3" style="text-align: left;" style="margin-top:50%;">
-                            &emsp;<div class="navbar-brand color-one">Real Estate</div>
-                            <a href="/homesapp">Home</a>
-                            <img src='{% static "homesapp/images/py.png" %}'
-                                width="17%"height="100%" >
-                        <button class="navbar-toggler" 
-                            type="button" 
-                            data-toggle="collapse" 
-                            data-target="#navbarSupportedContent2" 
-                            aria-controls="navbarSupportedContent2" 
-                            aria-expanded="false" 
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                    
-                    <div class="col-md-9"> 
-                        <div class="collapse navbar-collapse float-right" id="navbarSupportedContent2" >
-                            <nav class="nav" > 
-                                    &emsp;
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Price
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-        
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Beds
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-        
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Baths
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-        
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Floors
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-                                </div>   
-                                &emsp;                                  
-                                {% check_path request tags as tags %}
-                                {% if tags %}
-                                <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get" accept-charset="utf-8">
-                                    &emsp;
-                                    <input class="searchfield" id="searchbox" placeholder="city" aria-label="Search"  name="q">
-                                    &emsp;
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                    &emsp;
-                                </form>
-                                {% endif %}
-                            </nav> 
-                        </div>  
-                    </div> 
+        <nav class=" navbar-expand-md navbar-dark bg-dark" style="margin-top:auto;">
+            <div class = "row" style="padding-top:1%;">
+                <div class = "col-md-3" style="text-align: left;" style="margin-top:50%;">
+                        &emsp;<div class="navbar-brand color-one">Real Estate</div>
+                        <a href="/homesapp">Home</a>
+                        <img src='{% static "homesapp/images/py.png" %}'
+                            width="17%"height="100%" >
+                    <button class="navbar-toggler" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#navbarSupportedContent2" 
+                        aria-controls="navbarSupportedContent2" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
-            </nav>
+                
+                {% check_path request tags location.id as tags %}
+                <div class="col-md-9"> 
+                    <div class="collapse navbar-collapse float-right" id="navbarSupportedContent2" >
+                        <nav class="nav" > 
+                            {% if tags == "property" %}
+                            &emsp;
+                        <form class="form-inline my-2 my-lg-0" action="{% url 'searchProperties' primary%}" method="get" accept-charset="utf-8">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Price
+                                </button>
+                                <div class="dropdown-menu">
+                                    <select multiple value="" name="price_range" >
+                                        <option value="{{price_range}}" selected>Currently: {{price_range}}</option>
+                                        <option value="" >None</option>
+                                        <option value="$0-$100,000" >$0-$100,000</option>
+                                        <option value="$100,001-$150,000" >$100,001-$150,000</option>
+                                        <option value="$150,001-$200,000" >$150,001-$200,000</option>
+                                        <option value="$200,000+" >$200,000+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            &emsp;
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Floors
+                                </button>
+                                <div class="dropdown-menu">
+                                    <select multiple name="q_floors">
+                                        <option value="{{q_floors}}" selected>Currently: {{q_floors}}</option>
+                                        <option value="" >None</option>
+                                        <option value="1" >1</option>
+                                        <option value="2" >2</option>
+                                        <option value="4"">4</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            &emsp;
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Beds
+                                </button>
+                                <div class="dropdown-menu">
+                                    <select multiple value="" name="q_beds" >
+                                        <option value="{{q_beds}}" selected>Currently: {{q_beds}}</option>
+                                        <option value="" >None</option>
+                                        <option value="1" >1</option>
+                                        <option value="2" >2</option>
+                                        <option value="4"">4</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            &emsp;
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Baths
+                                </button>
+                                <div class="dropdown-menu">
+                                    <select multiple value="" name="q_baths" >
+                                        <option value="{{q_baths}}" selected>Currently: {{q_baths}}</option>
+                                        <option value="" >None</option>
+                                        <option value="1" >1</option>
+                                        <option value="2" >2</option>
+                                        <option value="4"">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            &emsp;
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>    
+                        </form>
+                            &emsp; &emsp; &emsp;
+                            {% endif %}  
+                            &emsp;
+                            {% if tags == "location" %}
+                            <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+                                &emsp;
+                                <input class="searchfield" id="searchbox" placeholder="city" aria-label="Search"  name="q">
+                                &emsp;
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                &emsp;
+                            </form>
+                            {% endif %}
+                        </nav> 
+                    </div>  
+                </div> 
+            </div>
+        </nav>
     </div>
 
         {% block body%}
@@ -104,14 +134,3 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>
-
- <!-- <form class="form-inline my-2 my-lg-0" action="/action_page.php">
-                    <input class="form-control mr-sm-2" type="search" placeholder="city" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
-                <!-- <form id="searchform" action="{% url 'search' %}" method="get" accept-charset="utf-8">
-                    <button class="searchbutton" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
-                </form> -->

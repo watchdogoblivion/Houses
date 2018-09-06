@@ -1,11 +1,15 @@
 {% extends 'homesapp/base.html' %}
+{% load homesapp_extras %}
 {% block body%}
 <br>
 <div class="home-card">
     <div class = "container">
         <br>
         <h2>Properties in {{location.location_name}}</h2>
+        
         {% for place in location.property_set.all %}
+        {% check_persist place price_range q_floors q_beds q_baths as persist%}
+        {% if persist %}
         <div class="panel-group">
             <div class= "panel panel-primary">
                 <div class="panel-heading">{{place.property_name}}</div>
@@ -23,16 +27,20 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>Area</td>
-                                    <td><b>{{ place.area }}</b></td>
-                                </tr>
-                                <tr>
                                     <td>Price</td>
                                     <td><b>{{ place.price }}</b></td>
                                 </tr>
                                 <tr>
                                     <td>Number of Floors</td>
-                                    <td><b>{{ place.floor }}</b></td>
+                                    <td><b>{{ place.floor }} floors</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Beds</td>
+                                    <td><b>{{ place.beds }} beds</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Baths</td>
+                                    <td><b>{{ place.bath }} baths</b></td>
                                 </tr>
                                 <tr>
                                     <td>Address</td>
@@ -48,6 +56,7 @@
                 </div>
             </div>
         </div>
+        {%endif%}
         {% endfor %}
     </div>
 </div>
