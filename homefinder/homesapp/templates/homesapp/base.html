@@ -1,0 +1,117 @@
+{% load staticfiles %}
+{% load homesapp_extras %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'homesapp/css/style.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+
+    <body>  
+            <!-- <p style="color: white">{{ request.path }}</p>
+            <p style="color: white">URL of this page: {{ request.get_full_path }}</p> -->
+    <div class= "col-md-12" style="margin-top:auto;">
+            <nav class=" navbar-expand-md navbar-dark bg-dark" style="margin-top:auto;">
+                <div class = "row" style="padding-top:1%;">
+                    <div class = "col-md-3" style="text-align: left;" style="margin-top:50%;">
+                            &emsp;<div class="navbar-brand color-one">Real Estate</div>
+                            <a href="/homesapp">Home</a>
+                            <img src='{% static "homesapp/images/py.png" %}'
+                                width="17%"height="100%" >
+                        <button class="navbar-toggler" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#navbarSupportedContent2" 
+                            aria-controls="navbarSupportedContent2" 
+                            aria-expanded="false" 
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                    <div class="col-md-9"> 
+                        <div class="collapse navbar-collapse float-right" id="navbarSupportedContent2" >
+                            <nav class="nav" > 
+                                    &emsp;
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Price
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Separated link</a>
+                                    </div>
+        
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Beds
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Separated link</a>
+                                    </div>
+        
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Baths
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Separated link</a>
+                                    </div>
+        
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Floors
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Separated link</a>
+                                    </div>
+                                </div>   
+                                &emsp;                                  
+                                {% check_path request tags as tags %}
+                                {% if tags %}
+                                <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+                                    &emsp;
+                                    <input class="searchfield" id="searchbox" placeholder="city" aria-label="Search"  name="q">
+                                    &emsp;
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                    &emsp;
+                                </form>
+                                {% endif %}
+                            </nav> 
+                        </div>  
+                    </div> 
+                </div>
+            </nav>
+    </div>
+
+        {% block body%}
+        {% endblock %}
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
+
+ <!-- <form class="form-inline my-2 my-lg-0" action="/action_page.php">
+                    <input class="form-control mr-sm-2" type="search" placeholder="city" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
+                <!-- <form id="searchform" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+                    <button class="searchbutton" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+                </form> -->

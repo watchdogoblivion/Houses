@@ -1,0 +1,73 @@
+{% extends 'homesapp/base.html' %}
+{% load homesapp_extras %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+            
+    </head>
+    
+    <body>  
+        {% block body %} 
+        <style>
+                table {border-collapse:collapse; table-layout:fixed; width:310px;}
+                table td {border:solid 1px #fab; width:210px; word-wrap:break-word;}
+                tr {display:inline}
+
+                </style>
+        
+        <div class="home-card">
+            <div class = "container" style="padding-left: 8%;padding-right: 2%">
+                <div class="marg">
+                    <h1>Select your location</h1>
+                    {{ lower }}
+                </div>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="border:0;">Locations in Massacusetts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% if location_list %}
+                            {% for location in object_list %}
+                                <tr class = "active">
+                                    <td><a href="/homesapp/{{location.id}}">{{location.location_name}}</a></td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {% endblock %}
+
+    </body>
+
+</html>
+
+
+
+<!-- <div class="container">
+                <div class = "jumbotron">
+                    <h1>Property Arena</h1>
+                    <p>Find the best properties across all locations</p>
+                </div>
+            </div> 
+            <div class="home-card">
+                <center><h1>Select your location</h1></center>
+                <div class="panel-group">
+                    <div class="[anel panel-default">
+                        <div class="panel-heading">Locations</div>
+                        {% if location_list %}
+                            {% for location in object_list %}
+                                <div>
+                                    <a href="/homesapp/{{location.id}}">{{location.location_name}}</a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div> -->

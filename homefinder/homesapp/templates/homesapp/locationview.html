@@ -1,0 +1,54 @@
+{% extends 'homesapp/base.html' %}
+{% block body%}
+<br>
+<div class="home-card">
+    <div class = "container">
+        <br>
+        <h2>Properties in {{location.location_name}}</h2>
+        {% for place in location.property_set.all %}
+        <div class="panel-group">
+            <div class= "panel panel-primary">
+                <div class="panel-heading">{{place.property_name}}</div>
+                <br>
+                <div class = "panel-body">
+                    <div class = "row">
+                    <div class="col-md-6">
+                        <img src="{{ place.image_url }}" 
+                            alt="Italian Trulli" 
+                            width="100%" 
+                            height="100%"
+                            class="image-thumb-margin">
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Area</td>
+                                    <td><b>{{ place.area }}</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Price</td>
+                                    <td><b>{{ place.price }}</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Number of Floors</td>
+                                    <td><b>{{ place.floor }}</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td><b>{{ place.address }}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <a class="btn btn-success"  href="/homesapp/{{location.id}}/{{place.id}}">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
