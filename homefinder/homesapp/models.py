@@ -19,14 +19,17 @@ class Property(models.Model):
     area = models.CharField(max_length = 200)
     age = models.CharField(max_length = 200)
     price = models.CharField(max_length = 200)
-    floor = models.CharField(max_length = 200)
+    floors = models.CharField(max_length = 200)
     address = models.CharField(max_length = 200)
     beds = models.CharField(max_length = 200)
-    bath = models.CharField(max_length = 200)
+    baths = models.CharField(max_length = 200)
     typ = models.CharField(max_length = 200)
     description = models.CharField(max_length = 200)
     image_url = models.CharField(max_length = 400)
     maps_url = models.CharField(max_length = 400)
+    seller_name = models.CharField(max_length = 200)
+    phone = models.CharField(max_length = 200)
+    email = models.CharField(max_length = 200)
 
     def __str__(self):
         return self.property_name

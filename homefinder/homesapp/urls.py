@@ -5,8 +5,8 @@ from .import views
 urlpatterns = [
     path('', views.IndexView.as_view(), name="index"),
     path('search/', views.IndexSearchView.as_view(), name='search'),
-    path('<pk>/', views.LocationView.as_view(), name="property"),
-    path('<pk>/searchProperties/', views.LocationSearchView.as_view(), name='searchProperties'),
+    path('<pk>/', views.PropertiesView.as_view(), name="properties"),
+    path('<pk>/searchProperties/', views.PropertiesSearchView.as_view(), name='searchProperties'),
     path('<int:id>/<pk>/', views.PropertyDetail.as_view(), name="propertyview"),
     
 ]

@@ -22,14 +22,14 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Location.objects.all()
 
-class LocationView(generic.DetailView):
+class PropertiesView(generic.DetailView):
     model = Location
-    template_name = 'homesapp/locationview.html'
+    template_name = 'homesapp/propertiesview.html'
 
     def get_context_data(self, **kwargs):
-        context = super(LocationView, self).get_context_data(**kwargs)
+        context = super(PropertiesView, self).get_context_data(**kwargs)
         context['primary'] = self.kwargs['pk']
-        context['price_range'] = "$200,000+"
+        context['price_range'] = ""
         context['q_floors'] = ""
         context['q_beds'] = ""
         context['q_baths'] = ""
@@ -37,7 +37,7 @@ class LocationView(generic.DetailView):
 
 class PropertyDetail(generic.DetailView):
     model = Property
-    template_name = 'homesapp/propertyview.html'
+    template_name = 'homesapp/propertydetail.html'
 
 def home_redirect(request):
     return HttpResponseRedirect("homesapp/")
@@ -58,12 +58,12 @@ class IndexSearchView(IndexView):
             )
         return result
 
-class LocationSearchView(LocationView):
+class PropertiesSearchView(PropertiesView):
 
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        context = super(LocationSearchView, self).get_context_data(**kwargs)
+        context = super(PropertiesSearchView, self).get_context_data(**kwargs)
         price_range = self.request.GET.get('price_range')
         floors = self.request.GET.get('q_floors')
         beds = self.request.GET.get('q_beds')

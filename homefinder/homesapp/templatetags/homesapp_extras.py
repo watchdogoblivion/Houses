@@ -20,13 +20,25 @@ def cut(value, arg):
 def check_path(request, tags, pk):
     # logger.warning(a)
     if(str(request.path) == "/homesapp/search/" or request.path == "/homesapp/"):
-        tags = "location"
+        tags = "locations"
     elif (str(request.path) == "/homesapp/" + str(pk) + "/" or
           str(request.path) == "/homesapp/" + str(pk) + "/searchProperties/"):
-        tags = "property"
+        tags = "properties"
     else:
         tags = ""
     return tags
+
+@register.simple_tag
+def back_path(request, l, p):
+    back = "#"
+    if type(l) is not str:
+        if (str(request.path) == "/homesapp/" + str(l.id) + "/" or
+            str(request.path) == "/homesapp/" + str(l_.id) + "/searchProperties/"):
+            back = "/homesapp/"
+    if type(p) is not str:
+        if (str(request.path) == "/homesapp/" + str(p.location.id) + "/" + str(p.id) + "/"):
+            back = "/homesapp/" + str(p.location.id) + "/"
+    return back
 
 @register.simple_tag
 def check_persist(place, price_range, q_floors, q_beds, q_baths):
@@ -47,12 +59,19 @@ def check_persist(place, price_range, q_floors, q_beds, q_baths):
         range_list.append(100000000)
    
     if (((range_list[0] <= int(price) and  int(price) <= range_list[1]) or price_range == "") and 
-         (place.floor == q_floors or q_floors == "") and 
+         (place.floors == q_floors or q_floors == "") and 
          (place.beds == q_beds or q_beds == "") and 
-         (place.bath == q_baths or q_baths == "")):
+         (place.baths == q_baths or q_baths == "")):
         persist = True
     return persist
 
 @register.simple_tag
-def loggy(l):
-    logger.warning(str(l) + "///////////////////////////////////////////////")
+def loggy():
+    logger.warning("///////////////////////////////////////////////")
+
+@register.simple_tag
+def style(location):
+    if(location.property_set.exists()):
+       return " color: green;"
+    else:
+        return ""

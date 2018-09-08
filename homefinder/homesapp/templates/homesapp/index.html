@@ -19,7 +19,7 @@
         <div class="home-card">
             <div class = "container" style="padding-left: 8%;padding-right: 2%">
                 <div class="marg">
-                    <h1>Select your location</h1>
+                    <h1>Select A Location</h1>
                 </div>
                 
                 <table class="table">
@@ -33,7 +33,7 @@
                         {% if location_list %}
                             {% for location in object_list %}
                                 <tr class = "active">
-                                    <td><a href="/homesapp/{{location.id}}">{{location.location_name}}</a></td>
+                                    <td><a  style="{% style location %}" href="/homesapp/{{location.id}}">{{location.location_name}}</a></td>
                                 </tr>
                             {% endfor %}
                         {% endif %}

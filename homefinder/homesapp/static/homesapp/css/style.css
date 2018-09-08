@@ -53,6 +53,14 @@ mark {
     height: 200%;
 }
 
+.contact-card {
+    background-color:rgba(0, 0, 0, 0.5);
+    height: 250px;
+    width: 70%;
+    margin: auto;
+    
+  }
+
 .marg{
     padding-top: 5%;
     margin-top: 1%;

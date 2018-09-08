@@ -14,7 +14,7 @@
                 </tr>
                 <tr>
                     <td>Area</td>
-                    <td><b>{{ property.area }}</b></td>
+                    <td><b>{{ property.area }} sq-ft</b></td>
                 </tr>
                 <tr>
                     <td>Age</td>
@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>Floor</td>
-                    <td><b>{{ property.floor }} floors</b></td>
+                    <td><b>{{ property.floors }} floors</b></td>
                 </tr>
                 <tr>
                     <td>Address</td>
@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                     <td>Baths</td>
-                    <td><b>{{ property.bath }} baths</b></td>
+                    <td><b>{{ property.baths }} baths</b></td>
                 </tr>
                 <tr>
                     <td>Type</td>
@@ -64,6 +64,15 @@
             <h3>Location</h3>
             <iframe src="{{property.maps_url}}" 
             width="100%" height="250px" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>   
+    </div>
+    
+    <div class="col-md-12">
+        <div class="outer-card">
+            <h3>Seller Info</h3>
+            <p>Name: {{property.seller_name}}</p>
+            <p>Email: {{property.email}}</p>
+            <p>Phone Number: {{property.phone}}</p>
         </div>   
     </div>
 </div>
